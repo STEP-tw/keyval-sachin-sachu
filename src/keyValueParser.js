@@ -8,12 +8,6 @@ var Parser=function() {
 }
 
 Parser.prototype = {
-  setToCaseSensitive: function(){
-    this.caseSensitivity=false;
-  },
-  isCaseSensitive:function(){
-    return this.caseSensitivity;
-  },
   parse:function(text) {
     var parseInfo=this.parseInfoCreator(this.ignoreLeadingWhiteSpace);
     var parsedKeys={};
