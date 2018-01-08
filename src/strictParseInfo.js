@@ -8,6 +8,10 @@ const contains=function(list,key) {
   });
 }
 
+const areSameKeys=function(key1,key2){
+  return key1.toLowerCase() == key2.toLowerCase();
+}
+
 var StrictParseInfo=function(initialParsingFunction,validKeys,caseSensitivity=true) {
   ParseInfo.call(this,initialParsingFunction);
   this.validKeys=validKeys;
@@ -18,7 +22,7 @@ StrictParseInfo.prototype=Object.create(ParseInfo.prototype);
 
 StrictParseInfo.prototype.pushKeyValuePair=function() {
   if(!this.caseSensitivity && this.validKeys.some((validKey)=>{
-    if(this.currentKey.toLowerCase()==validKey.toLowerCase()){
+    if(areSameKeys(this.currentKey,validKey)){
       this.validKeys[this.validKeys.indexOf(validKey)]=this.currentKey;
     }
   }));
