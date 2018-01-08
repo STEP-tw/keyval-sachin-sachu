@@ -3,10 +3,17 @@ const MissingKeyError=require("./errors/missingKeyError.js");
 const MissingAssignmentOperatorError=require("./errors/missingAssignmentOperatorError.js");
 
 var Parser=function() {
+  this.caseSensitivity=true;
   this.parseInfoCreator=parseInfoCreator;
 }
 
 Parser.prototype = {
+  setToCaseSensitive: function(){
+    this.caseSensitivity=false;
+  },
+  isCaseSensitive:function(){
+    return this.caseSensitivity;
+  },
   parse:function(text) {
     var parseInfo=this.parseInfoCreator(this.ignoreLeadingWhiteSpace);
     var parsedKeys={};

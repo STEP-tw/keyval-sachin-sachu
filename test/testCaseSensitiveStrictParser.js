@@ -6,12 +6,28 @@ const StrictParser=require(src('index.js')).StrictParser;
 
 describe("strict parser that is case insensitive",function(){
   it("should parse when specified keys are in lower case and actual is not",function(){
-    let kvParser=new StrictParser(["name"],false);
+    let kvParser=new StrictParser(["Name"],false);
     // false indicates that case sensitive is false. By default it is true
     let expected=new Parsed();
     expected["NAME"]="jayanth";
     let parsed=kvParser.parse("NAME=jayanth");
+    console.log(parsed);
+    console.log(expected);
     assert.deepEqual(parsed,expected);
+  });
+});
+
+describe("strict parser that is case insensitive",function(){
+  it("should parse when specified keys are in lower case and actual is not",function(){
+    let kvParser=new StrictParser(["Name","Age"],false);
+    // false indicates that case sensitive is false. By default it is true
+    let expected=new Parsed();
+    expected["NAME"]="jayanth";
+    expected["AGE"]='38';
+    let parsed=kvParser.parse("NAME=jayanth AGE=38");
+    console.log(parsed);
+    console.log(expected);
+    assert.deepEqual(Object.entries(parsed),Object.entries(expected));
   });
 });
 
