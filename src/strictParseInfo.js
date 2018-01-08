@@ -8,14 +8,6 @@ const contains=function(list,key) {
   });
 }
 
-const isKeySame=function(key1, key2){
-  return key1.toLowerCase() == key2.toLowerCase();
-}
-
-const isAnyKeySame=function(list,key) {
-  return list.some((validKey)=>{isKeySame(validKey,key)})
-};
-
 var StrictParseInfo=function(initialParsingFunction,validKeys,caseSensitivity=true) {
   ParseInfo.call(this,initialParsingFunction);
   this.validKeys=validKeys;
@@ -25,7 +17,7 @@ var StrictParseInfo=function(initialParsingFunction,validKeys,caseSensitivity=tr
 StrictParseInfo.prototype=Object.create(ParseInfo.prototype);
 
 StrictParseInfo.prototype.pushKeyValuePair=function() {
-  if(this.validKeys.some((validKey)=>{
+  if(!this.caseSensitivity && this.validKeys.some((validKey)=>{
     if(this.currentKey.toLowerCase()==validKey.toLowerCase()){
       this.validKeys[this.validKeys.indexOf(validKey)]=this.currentKey;
     }
